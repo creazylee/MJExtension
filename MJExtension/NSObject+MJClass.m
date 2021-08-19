@@ -16,6 +16,7 @@ static const char MJAllowedPropertyNamesKey = '\0';
 static const char MJIgnoredPropertyNamesKey = '\0';
 static const char MJAllowedCodingPropertyNamesKey = '\0';
 static const char MJIgnoredCodingPropertyNamesKey = '\0';
+static const char MJIgnoredClassNamesKey = '\0';
 
 @implementation NSObject (MJClass)
 
@@ -83,6 +84,15 @@ static const char MJIgnoredCodingPropertyNamesKey = '\0';
         // 4.2.获得父类
         c = class_getSuperclass(c);
     }
+}
+
+#pragma mark - 类黑名单配置
++ (void)mj_setupIgnoredClassNames:(MJIgnoredClassNames)ignoreClassNames {
+    [self mj_setupBlockReturnValue:ignoreClassNames key:&MJIgnoredClassNamesKey];
+}
+
++ (NSMutableArray *)mj_totalIgnoredClassNames {
+    return [self mj_totalObjectsWithSelector:@selector(mj_ignoredClassNames) key:&MJIgnoredClassNamesKey];
 }
 
 #pragma mark - 属性黑名单配置

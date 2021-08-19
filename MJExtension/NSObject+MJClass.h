@@ -22,7 +22,8 @@ typedef NSArray * (^MJAllowedCodingPropertyNames)(void);
 typedef NSArray * (^MJIgnoredPropertyNames)(void);
 /** 这个数组中的属性名将会被忽略：不进行归档 */
 typedef NSArray * (^MJIgnoredCodingPropertyNames)(void);
-
+/** 这个数组中的类名将会被忽略*/
+typedef NSArray * (^MJIgnoredClassNames)(void);
 /**
  * 类相关的扩展
  */
@@ -58,6 +59,18 @@ typedef NSArray * (^MJIgnoredCodingPropertyNames)(void);
  *  这个数组中的属性名将会被忽略：不进行字典和模型的转换
  */
 + (NSMutableArray *)mj_totalIgnoredPropertyNames;
+
+/**
+ 这个数组中的父类会被忽略,不进行模型转换
+
+ @param ignoreClassNames 这个数组中的父类会被忽略,不进行模型转换
+ */
++ (void)mj_setupIgnoredClassNames:(MJIgnoredClassNames)ignoreClassNames;
+
+/**
+ 这个数组中的父类会被忽略,不进行模型转换
+ */
++ (NSMutableArray *)mj_totalIgnoredClassNames;
 
 #pragma mark - 归档属性白名单配置
 /**

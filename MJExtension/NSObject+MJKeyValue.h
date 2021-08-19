@@ -27,6 +27,11 @@
 + (NSArray *)mj_ignoredPropertyNames;
 
 /**
+ 这个数组中的类将被忽略
+ */
++ (NSArray *)mj_ignoredClassNames;
+
+/**
  *  将属性名换为其他key去字典中取值
  *
  *  @return 字典中的key是属性名，value是从字典中取值用的key
